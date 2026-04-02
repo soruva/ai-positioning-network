@@ -219,6 +219,7 @@
     padding-top: 1.5rem;
     /* Slight left offset to feel hand-designed, not machine-centered */
     padding-left: 2px;
+    position: relative;
   }
 
   .progress-header {
@@ -284,7 +285,7 @@
   /* ══════════════════════════════════════════
      LOADING
   ══════════════════════════════════════════ */
-  .loading-wrap { text-align:center; max-width:360px; }
+  .loading-wrap { text-align:center; max-width:360px; position:relative; }
   .loader-ring {
     width:72px; height:72px; border-radius:50%;
     border:2.5px solid rgba(255,255,255,.05);
@@ -316,6 +317,7 @@
   margin: 0 auto;
   padding: 3rem 0 5rem;
   transform: translateX(-6px);
+  position: relative;
   }
 
   /* ── Section label ── */
@@ -587,6 +589,26 @@
     .comparison-grid { grid-template-columns:1fr; }
     .live-strip { padding:.875rem 1rem; }
   }
+
+  /* ── TOP NAV ── */
+  .top-nav {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+  }
+  .top-nav button {
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    padding: 0;
+    letter-spacing: .01em;
+  }
+  .top-nav button:hover {
+    color: rgba(255,255,255,0.8);
+  }
 </style>
 </head>
 <body>
@@ -651,6 +673,9 @@
 <!-- ═══════════ QUIZ ═══════════ -->
 <div id="screen-quiz" class="screen">
   <div class="quiz-wrap">
+    <div class="top-nav">
+      <button onclick="goHome()">← Home</button>
+    </div>
     <div class="progress-header">
       <span id="q-counter">Question 1 of 9</span>
       <span id="q-pct">0%</span>
@@ -673,6 +698,9 @@
 <!-- ═══════════ LOADING ═══════════ -->
 <div id="screen-loading" class="screen">
   <div class="loading-wrap">
+    <div class="top-nav">
+      <button onclick="goHome()">← Home</button>
+    </div>
     <div class="loader-ring"></div>
     <div class="loading-title">Calculating your position...</div>
     <p style="color:var(--muted);font-size:.8rem;line-height:1.5;">Benchmarking against global index</p>
@@ -690,6 +718,9 @@
 <!-- ═══════════ RESULT ═══════════ -->
 <div id="screen-result" class="screen" style="align-items:center;">
   <div class="result-wrap">
+    <div class="top-nav">
+      <button onclick="goHome()">← Home</button>
+    </div>
 
     <!-- POSITION ID -->
     <div class="position-header">
@@ -1214,6 +1245,7 @@ function compareIds() {
 }
 
 function restart() { showScreen('screen-hero'); }
+function goHome()  { showScreen('screen-hero'); }
 </script>
 </body>
 </html>
